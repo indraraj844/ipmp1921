@@ -17,23 +17,89 @@ public:
 METHOD 2:
 class Solution {
 public:
-    int singleNumber(vector<int>& nums) {
-        
-    int single_bit=0;
-        for(int i=0;i<32;i++)
+    vector<int> sortedSquares(vector<int>& arr) {
+        int n=arr.size();
+     int i=0,j=n-1;
+        int res[n];
+        for(int index=n-1;index>-1;index--)
         {
-            int y=(1<<i);
-            int sum=0;
-            for(int j=0;j<nums.size();j++)
+            if(abs(arr[i])>abs(arr[j]))
             {
-                if(nums[j]&y)
-                    sum++;
+                res[index]=arr[i]*arr[i];
+                i++;
             }
-            if(sum%3!=0)
-                single_bit|=y;
+            else
+            {
+              res[index]=arr[j]*arr[j];
+               j--;
+            }    
+        }
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=res[i];
+        }
+        return arr;
+    }
+};
+time complexity o(n)
+space complexity s(n)
+    
+ Method 3:
+using merge sort
+class Solution {
+public:
+    vector<int> sortedSquares(vector<int>& arr) {
+        int n=arr.size();
+        int sep_index;
+        int flag=0;
+        for(int i=0;i<n;i++)
+        {
+            if(arr[i]>=0)
+            {
+                sep_index=i;
+                flag=1;
+                break;
+            }
+        }
+        if(!flag)
+        {
+            sep_index=n;
+        }
+        for(int i=0;i<n;i++)
+        {
+            arr[i]=(arr[i]*arr[i]);
+        }
+       
+        int i=sep_index-1,j=sep_index,k=0;
+        int res[n];
+        while(i>-1&&j<n)
+        {
+            if(arr[i]>arr[j])
+            {res[k]=arr[j];
+             j++;
+            }
+            else
+            {res[k]=arr[i];
+             i--;
+            }
+            k++;
+        }
+        while(i>-1)
+            {res[k]=arr[i];
+             i--;
+             k++;
+            }
+        while(j<n)
+        {
+            {res[k]=arr[j];
+             j++;
+             k++;
+            }
         }
         
-        return single_bit;
-        
+        for(int p=0;p<n;p++)
+        {
+        arr[p]=res[p];}
+        return arr;
     }
 };
