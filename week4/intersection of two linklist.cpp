@@ -77,4 +77,7 @@ public:
     }
 };
 method 3:
+if it will be a single checking question then we can compare the 
+last node and will give our final answer.
+  
 
