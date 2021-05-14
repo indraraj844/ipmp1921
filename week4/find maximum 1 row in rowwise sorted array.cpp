@@ -8,6 +8,7 @@ public:
 	    // code here
 	    int max_count=0;
 	    int count;
+	    int max_index=-1;
 	    for(int i=0;i<n;i++)
 	    {
 	        count=0;
@@ -23,12 +24,17 @@ public:
 	           else 
 	            l=mid+1;
 	       }
-	        max_count=max(max_count,count);
+	       if(count>max_count &&count>0)
+	       {
+	           max_count=count;
+	           max_index=i;
+	       }
 	    }
-	    return max_count;
+	    return max_index;
 	}
 
 };
 method 3:
 time complexity o(m+n)
+	
   
