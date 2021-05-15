@@ -14,3 +14,35 @@ public:
     }
 };
 method 2:
+class Solution {
+public:
+    int gcd(int a, int b)
+{
+    if (b == 0)
+        return a;
+    return gcd(b, a % b);
+     
+}
+    
+    void rotate(vector<int>& arr, int d) {
+        int n=arr.size();
+        int no=gcd(n,d);
+        
+        int j=0;
+        for(int i=0;i<no;i++)
+        {
+            int temp=arr[j];
+            int l=j;
+            while(l<n-no)
+            {
+                arr[l]=arr[l+d];
+                l=l+no;
+            }
+            arr[l]=temp;
+            j++;
+        }
+    
+        }
+};
+need to convert
+
