@@ -26,23 +26,26 @@ public:
     
     void rotate(vector<int>& arr, int d) {
         int n=arr.size();
-        int no=gcd(n,d);
-        
-        int j=0;
-        for(int i=0;i<no;i++)
-        {
-            int temp=arr[j];
-            int l=j;
-            while(l<n-no)
-            {
-                arr[l]=arr[l+d];
-                l=l+no;
-            }
-            arr[l]=temp;
-            j++;
-        }
-    
-        }
-};
-need to convert
+        d=d%n;
+        int gcd_=gcd(n,d);
 
+    for (int i = n-1; i >n-1-gcd_; i--) {
+     
+        int temp = arr[i];
+        int j = i;
+ 
+        while (1) {
+            int k = j - d;
+            if (k <= -1)
+                k = k +n;
+ 
+            if (k == i)
+                break;
+ 
+            arr[j] = arr[k];
+            j = k;
+        }
+        arr[j] = temp;
+    }
+    }
+};
