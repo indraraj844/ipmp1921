@@ -1,23 +1,32 @@
 class Solution {
 public:
-    int countRangeSum(vector<int>& nums, int lower, int upper) {
-    int n=nums.size();
-        int count=0,sum;
-        for(int i=0;i<n;i++)
-        {sum=0;
-        for(int j=i;j<n;j++)
-        {
-            if(sum==2147483647 && nums[j]>0)
-                break;
-            
-            sum+=nums[j];
-            if(sum>=lower &&sum<=upper)
+  int countSub(vector<int>&arr,
+                  int n, int k)
+{
+    int count = 0;
+ 
+    for (int i = 0; i < n; i++) {
+        int sum = 0;
+        for (int j = i; j < n; j++) {
+            if (sum + arr[j] < k) {
+                sum = arr[j] + sum;
                 count++;
+            }
+            else {
+                break;
+            }
         }
-        }
-        return count;
+    }
+ 
+    return count;
+}
+    int countRangeSum(vector<int>& arr, int L, int R) {
+        int n=arr.size();
+    int Rcnt = countSub(arr, n, R);
+    int Lcnt = countSub(arr, n, L - 1);
+ 
+    return Rcnt - Lcnt;
     }
 };
-dont work for all cases 
-integer overflow
-
+o(n)
+    
