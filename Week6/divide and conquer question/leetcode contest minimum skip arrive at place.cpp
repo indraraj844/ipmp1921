@@ -1,22 +1,27 @@
 class Solution {
 public:
-    int helper(vector<int>& dist,int n,int speed,int hour,int time,int i)
-    {  
-        if(time>hour||i>n)return INT_MAX-1;
-        if(i==n&&time<=hour)return 0;
-        return  min(1+helper(dist,n,speed,hour,time+(dist[i]/speed),i+1)
-                   ,helper(dist,n,speed,hour,time+(ceil(dist[i]/speed)),i+1));
-       
-    }
-    int minSkips(vector<int>& dist, int speed, int hour) {
-        int sum=0;
-        for(int i=0;i<dist.size();i++)
-        {
-            sum+=dist[i];
+
+    int minSkips(vector<int>& A, int s, int target) {
+       int n = A.size();
+        vector<int> dp(n + 1, 0);
+        for (int i = 0; i < n; ++i) {
+            for (int j = n; j >= 0; --j) {
+                dp[j] += A[i];
+                if (i < n - 1)
+                    dp[j] = (dp[j] + s - 1) / s * s; // take a rest
+                if (j > 0)
+                    dp[j] = min(dp[j], dp[j - 1] + A[i]);
+            }
         }
-        if((sum/speed)>hour)return -1;
-        int time=0,count=0;
-        int n=dist.size();
-        return helper(dist,n,speed,hour,time,0);
+        for (int i = 0; i < n; ++i) {
+            if (dp[i] <= (long)s * target)
+                return i;
+        }
+        return -1;
     }
 };
+o(n^2)
+ logic: we have to minimize the total distance 
+ we use dynamic programing here 
+ points what will you do for rest and simple move
+ and how to intilize in starting.
