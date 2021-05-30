@@ -30,41 +30,46 @@ method 3
   modified version of quick sort
   avarage case o(n)
     wrost case o(n^2)
-  class Solution {
+ class Solution {
 public:
-    int partition(vector<int>& arr,int l,int r)
+   int partition(vector<int>& a,int l,int h)
+{
+    int i=l-1;
+    int p=a[h];
+    for(int j=l;j<h;j++)
     {
-        int x=arr[r],i=l;
-        for(int j=l;j<=r-1;j++)
+        if(a[j]<p)
         {
-            if(x>=arr[j])
-            {
-                swap(arr[i],arr[j]);
-                i++; 
-            }
-               
+            i=i+1;
+            int temp=a[i];
+            a[i]=a[j];
+            a[j]=temp;
         }
-        swap(arr[i],arr[r]);
-        return i;
     }
-    int helper(vector<int>& arr,int l,int r,int k)
-    {
-        cout<<k<<" ";
-        if(k>0&&k<=r-l+1)
-        {
-            int pos=partition(arr,l,r);
-            if(pos-1==k-1)return arr[pos];
-            else if(pos-1>k-1)
-                return helper(arr,l,pos-1,k);
-                else 
-                return helper(arr,pos+1,r,k-pos); 
-        }
-        return INT_MAX;
-    }
+    
+    int temp1=a[i+1];
+    a[i+1]=a[h];
+    a[h]=temp1;
+    
+    return i+1;
+}
+
+int quicksort(vector<int>& a,int l,int h,int k)
+{
+    if(l>h)
+        return 0;
+    
+    int pi=partition(a,l,h);
+    if(pi==k)
+        return a[pi];
+    
+ return quicksort(a,l,pi-1,k) + quicksort(a,pi+1,h,k);
+}
     
     int findKthLargest(vector<int>& nums, int k) {
         int n=nums.size();
-         return helper(nums,0,n-1,n-k+1);
+         return  quicksort(nums,0,n-1,n-k);
     }
 };
-need to change
+thankyou
+
