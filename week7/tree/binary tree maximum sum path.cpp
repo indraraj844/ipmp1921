@@ -20,8 +20,9 @@ int findMaxUtil(TreeNode* root, int &res)
     int max_single = max(max(l, r) + root->val, root->val);
     int max_top = max(max_single, l + r + root->val);
  
-    res = max(res, max_top);
-    return max_single;
+    res = max(res, max_top);//result will be our overall result
+    return max_single;// because in a path we can take only left or right
+    
 }
  
 
