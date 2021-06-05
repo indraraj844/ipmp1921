@@ -74,3 +74,33 @@ public:
     }
 };
 need to change
+
+method 3 queue solution it will run for all cases
+ int widthOfBinaryTree(TreeNode* root) {
+       if (root == nullptr) return 0;
+        queue<pair<TreeNode*, int>> que;
+        que.push(make_pair(root, 0));
+        int ans = 0;
+        while (!que.empty()) {
+            int size = que.size();
+            int start = 0;
+            int end = 0;
+            for (int i = 0; i < size; ++i) {
+                pair<TreeNode*, int> temp = que.front(); que.pop();
+                TreeNode* node = temp.first;
+                long int idx = temp.second;
+                
+                if (i == 0) start = idx;
+                if (i == size - 1) end = idx;
+                
+                if (node->left != nullptr) 
+                    que.push(make_pair(node->left, idx * 2 + 1));
+                if (node->right != nullptr)
+                    que.push(make_pair(node->right, idx * 2 + 2));
+            }
+            ans = max(ans, end - start + 1);
+        }
+        return ans;
+    }
+};
+thankyou
