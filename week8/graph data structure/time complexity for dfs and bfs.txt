@@ -1,0 +1,9 @@
+For a directed graph, the sum of the sizes of the adjacency lists of all the nodes is E.
+So, the time complexity in this case is O(V) + O(E) = O(V + E).
+For an undirected graph, each edge appears twice. Once in the adjacency list of either end of the edge. 
+The time complexity for this case will be O(V) + O (2E) ~ O(V + E).
+If the graph is represented as an adjacency matrix (a V x V array):
+For each node, we will have to traverse an entire row of length V in the matrix to discover all its outgoing edges.
+Note that each row in an adjacency matrix corresponds to a node in the graph, and that row stores information
+about edges emerging from the node. Hence, the time complexity of DFS in this case is O(V * V) = O(V2).
+The time complexity of DFS actually depends on the data structure being used to represent the graph.
