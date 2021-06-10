@@ -1,11 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
+#define N 1e5
+vector<int>parent(N);
+vector<int>dist(N);
+
 
 int main()
 {
  int n,m;
  cin>>n>>m;
- vector<vector<pair<int,int>>>edges(n+1);
+ vector<vector<int>>edges[n];
  for(int i=0;i<m;i++)
  {
      int u,v,w;
@@ -22,29 +26,30 @@ int main()
  s.insert({0,src});
  int cost=0;
  vector<bool>vis(n,false);
- vector<int>parent(n,-1);
+ vector<int>parent(n);
  while(!s.empty())
  {
      auto x=*(s.begin());
      vis[x[1]]=true;
+     s.erase(x);
      int u=x[1];
      int v=parent[x[1]];
      int w=x[0];
      cout<<u<<" "<<v<<" "<<w<<endl;
      cost+=w;
-     s.erase(x);
+     
      for(auto it:edges[x[1]])
      {
-        if(vis[it.first])continue;
-        if(dist[it.first]>it.second)
+        if(vis[it[0]])continue;
+        
+        if(dist[it[0]]>it[1])
         {
-            s.erase({dist[it.first],it.first});
-            dist[it.first]=it.second;
-            s.insert({dist[it.first],it.first});
+            s.erase({dist[it[0]],it[0]});
+            dist[it[0]]=it[1];
+            s.insert({dist[it[0]],it[0]});
         }
      }
  }
 cout<<cost;
  return 0;
 }
-need to change
