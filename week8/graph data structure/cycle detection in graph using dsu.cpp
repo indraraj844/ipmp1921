@@ -14,7 +14,8 @@ vector<int>sz(N);
   {
       if(v==parent[v])
       return v;
-      return parent[v]=find_set(parent[v]);
+      return parent[v]=find_set(parent[v]);//path reduction method 
+      //except than searching we will give parent also for grandchidren 
   }
    int union_set(int A,int B)
    {
@@ -23,8 +24,8 @@ vector<int>sz(N);
        
        if(a!=b)
        {
-           if(sz[a]<sz[b])swap(a,b);
-           
+           if(sz[a]<sz[b])swap(a,b);//always small will add with big
+                             //for reducing time complexity
            parent[b]=a;
            sz[a]+=sz[b];
        }
@@ -70,3 +71,5 @@ int main()
     cout<<" cycle not found";
     
 }
+learn two best time complexity reducing concept from naive approach
+thankyou
