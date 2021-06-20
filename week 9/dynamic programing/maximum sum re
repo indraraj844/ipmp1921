@@ -1,0 +1,36 @@
+//kadane approach
+class Solution {
+  public:
+       
+       int kadane(int v[],int n)
+       {
+           int sum=0,max_sum=INT_MIN;
+           for(int i=0;i<n;i++)
+           {
+               sum+=v[i];
+               max_sum=max(sum,max_sum);
+               if(sum<0)sum=0;
+           }
+           return max_sum;
+       }
+ 
+    int maximumSumRectangle(int row, int  col, vector<vector<int>>&mat) {
+      int max_sum=INT_MIN;
+      int temp[row];
+      for(int left=0;left<col;left++)
+      {
+          memset(temp,0,sizeof(temp));
+          for(int right=left;right<col;right++)
+          {
+              for(int i=0;i<row;i++)
+              {
+                  temp[i]+=mat[i][right];
+              }
+              int sum=kadane(temp,row);
+              max_sum=max(sum,max_sum);
+          }
+      }
+      return max_sum;
+    }
+};
+thankyou 
