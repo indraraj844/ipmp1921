@@ -25,3 +25,41 @@ class Solution{
         return helper(root,0,&leaflevel);
     }
 };
+using queue (itrative method)
+  class Solution{
+  public:
+ 
+    bool check(Node *root)
+    {
+        if(!root)return true;
+        queue<Node*>q;
+        q.push(root);
+        int level=0,res=0;
+        while(!q.empty())
+        {
+         Node* temp=q.front();
+         q.pop();
+         if(!temp->left && !temp->right)
+         {
+             if(res==0)res=level;
+             else if(res!=level)
+             {
+                 return 0;
+             }
+         }
+         else
+         {
+         level++;
+         if(temp->left)
+         {
+             q.push(temp->left);
+         }
+         if(temp->right)
+         {
+             q.push(temp->right);
+         }
+        }
+        }
+        return 1;
+    }
+};
