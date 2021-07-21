@@ -1,0 +1,18 @@
+1. priority queue
+Function	Time Complexity	Space Complexity
+Q.top()	    O(1)              O(1)
+Q.push()	  O(log n)        O(1)
+Q.pop()	    O(log n)        O(1)
+Q.empty()	  O(1)             O(1)
+
+
+
+
+
+
+
+
+
+
+
+
