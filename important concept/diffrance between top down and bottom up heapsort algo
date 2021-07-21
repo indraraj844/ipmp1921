@@ -1,0 +1,11 @@
+In top down construction,the tree is constructed first and a heapify function is called on the nodes.
+The worst case would swap log n times ( to sift the element to the top of the tree where height of tree
+is log n) for all the n/2 leaf nodes. This results in a O(n log n) upper bound.
+
+In bottom up construction, you assume all the leaf nodes to be in order in the first pass, so heapify
+is now called only on n/2 nodes.At each level, the number of possible swaps increases but the number
+of nodes on which it happens decreases.
+
+For example - At the level right above leaf nodes, we have n/4 nodes that can have at most 1 swap each.
+At its' parent level we have, n/8 nodes that can have at most 2 swaps each and so on. On summation, we'll come up with
+a O(n) efficiency for bottom up construction of a heap.
