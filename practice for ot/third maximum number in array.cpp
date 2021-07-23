@@ -69,3 +69,32 @@ public:
         return third;
     }
 };
+ 2 version
+ class Solution {
+public:
+    int thirdMax(vector<int>& arr) {
+        long long int first=-1e10;
+        long long int  second=-1e10;
+         long long int third=-1e10;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(arr[i]>first)
+            {
+                third=second;
+                second=first;
+                first=arr[i];
+            }
+            else if(second<arr[i]&& arr[i]<first)
+            {
+                third=second;
+                second=arr[i];
+            }
+            else if(second>arr[i]&& arr[i]>third)
+                third=arr[i];
+        }
+        if(third==-1e10)
+            return *max_element(arr.begin(),arr.end());
+        return third;
+    }
+};
+thankyou
