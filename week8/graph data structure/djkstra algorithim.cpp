@@ -34,7 +34,7 @@ int main()
          }
      }
  }
- for(int i=1;i<=n;i++)
+ for(int i=0;i<n;i++)
  {
      if(dist[i]<INT_MAX)
      cout<<dist[i]<<" ";
@@ -43,4 +43,3 @@ int main()
  }
  return 0;
 }
-logic: i will use a set here 
