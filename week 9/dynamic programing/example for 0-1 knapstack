@@ -1,0 +1,29 @@
+saving = 250
+    // currentValue = [175, 133, 109, 210, 97]
+    // futureValue = [200, 125, 128, 228, 133)
+    int W = 250;
+    //similar to 0/1 Knapsack
+    int cv[5] = {175, 133, 109, 210, 97};  // weight
+    int fv[5] = {200, 125, 128, 228, 133}; //value
+    int dp[6][W + 1];
+    int mv = INT_MIN;
+    for (int i = 0; i <= W; i++)
+        dp[0][i] = 0;
+    for (int i = 0; i <= 5; i++)
+        dp[i][0] = 0;
+    for (int i = 1; i < 6; i++)
+    {
+        for (int j = 1; j <= W; j++)
+        {
+            if (cv[i - 1] >= fv[i - 1] && cv[i - 1] <= j)
+            {
+                dp[i][j] = max(dp[i - 1][j], dp[i - 1][j - cv[i - 1]] + fv[i - 1] - cv[i - 1]);
+            }
+            else
+            {
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+            }
+            mv = max(dp[i][j], mv);
+        }
+    }
+    cout << mv << "\n";
