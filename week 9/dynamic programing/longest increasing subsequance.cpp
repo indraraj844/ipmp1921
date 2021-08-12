@@ -33,3 +33,24 @@ method 2 nlogn
       return s.size();
     }
 thankyou
+
+method 3 (nlogn) with answer array
+class Solution {
+public:
+    vector<int> longestObstacleCourseAtEachPosition(vector<int>& obs) {
+        int n=obs.size();
+       int dp[n+1];
+        dp[0]=INT_MIN;
+        for(int i=1;i<=n;i++)dp[i]=INT_MAX;
+        
+        vector<int>ans;
+        for(int i=0;i<n;i++)
+        {
+          int ub=upper_bound(dp,dp+n+1,obs[i])-dp;
+           dp[ub]=obs[i];
+            
+            ans.push_back(ub);
+        }
+        return ans;
+    }
+};
