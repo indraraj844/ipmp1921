@@ -34,3 +34,42 @@ public:
     }
 };
 method 2 efficent
+class Solution {
+public:
+    string findDifferentBinaryString(vector<string>& nums) {
+        
+        int k = nums.size();
+        map<string,int>mp;
+        string str,str1;
+        for(int i=0;i<k;i++)
+        {
+            str += '0';
+            str1 += '1';
+        }
+        for(auto &i:nums)
+        {
+            mp[i]++;
+        }
+        if(mp.find(str)==mp.end())
+            return str;
+        if(mp.find(str1)==mp.end())
+            return str1;
+        mp.erase(str);
+        mp.erase(str1);
+        if(mp.size()==0)
+        {
+            str[k-1]='1';
+            return str;
+        }
+        for(auto &i:mp)
+        {
+            string j=i.first;
+            reverse(j.begin(),j.end());
+                if(mp.find(j)==mp.end())
+                    return j;
+        }
+        return str;
+        
+    }
+};
+thankyou
