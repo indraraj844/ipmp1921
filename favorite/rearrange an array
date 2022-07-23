@@ -1,0 +1,9 @@
+approach
+
+we have old value and new value and we want to get new value in o(n) & s(1)
+
+ value= (old_value+ new_value*n)
+ old_value=value%n;
+ new_value=value/n;
+ 
+ 
